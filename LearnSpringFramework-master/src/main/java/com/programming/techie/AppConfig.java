@@ -19,8 +19,8 @@ public class AppConfig {
 
     @Bean(name = "emailClient")
     public EmailClient createEmailClient() {
-        //EmailClient emailClient = new EmailClient(createAdvancedSpellChecker());//this is for constructer based
-    	EmailClient emailClient=new EmailClient();
+        //EmailClient emailClient = new EmailClient (createAdvancedSpellChecker());//this is for constructer based
+    	EmailClient emailClient=new EmailClient(); 
         emailClient.setSpellChecker(createAdvancedSpellChecker()); //this is for setter and getter based
         return emailClient;
     }
