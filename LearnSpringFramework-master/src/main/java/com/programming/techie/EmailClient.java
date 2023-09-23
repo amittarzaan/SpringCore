@@ -14,7 +14,18 @@ class EmailClient {
         spellChecker.checkSpelling(emailMessage);
         // Logic to Send Email
     }
+    //below one for constructor based 
+    /*
     EmailClient(SpellChecker specllchecker){
     	this.spellChecker=specllchecker;
-    }
+    }*/
+
+	public SpellChecker getSpellChecker() {
+		return spellChecker;
+	}
+
+	public void setSpellChecker(SpellChecker spellChecker) {
+		this.spellChecker = spellChecker;
+	}
+    
 }
