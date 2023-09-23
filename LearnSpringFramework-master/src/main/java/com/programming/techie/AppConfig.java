@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.programming.techie")
 public class AppConfig {
 
-    //// @Bean(name = "basicSpellChecker", initMethod = "init", destroyMethod = "destroy")
+    // @Bean(name = "basicSpellChecker", initMethod = "init", destroyMethod = "destroy")
     @Bean(name = "basicSpellChecker")
     public BasicSpellChecker createBasicSpellChecker() {
         return new BasicSpellChecker();
