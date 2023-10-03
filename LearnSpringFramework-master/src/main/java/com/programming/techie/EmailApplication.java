@@ -33,6 +33,11 @@ public class EmailApplication {
          EmailClient emailClient = applicationContext.getBean("emailClient", EmailClient.class);
     	emailClient.sendEmail("Hey this is my fist email amitlaha@gmailcom");
     	emailClient.sendEmail("Hey this is my second email amitlaha@gmailcom");
-    	
-    }
+    	//Note while calling a bean We need to start it with small latter
+        SpellChecker advanceSpecllcheker=applicationContext.getBean("advancedSpellChecker",AdvancedSpellChecker.class);
+        SpellChecker advanceSpecllcheker2=applicationContext.getBean("advancedSpellChecker",AdvancedSpellChecker.class);
+        System.out.println("advanceSpecllcheker>> "+advanceSpecllcheker); 
+        System.out.println("advanceSpecllcheker222>> "+advanceSpecllcheker2); 
+        ((AnnotationConfigApplicationContext)applicationContext).registerShutdownHook();
+     }
 }

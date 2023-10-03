@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 class EmailClient {
    @Autowired
-   // @Qualifier("advancedSpellChecker")
+   @Qualifier("advancedSpellChecker")
     private SpellChecker spellChecker;
 
     void sendEmail(String emailMessage) {
