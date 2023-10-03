@@ -1,9 +1,10 @@
 package com.programming.techie;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-//@Primary
+@Primary
 class BasicSpellChecker implements SpellChecker {
 
 //    public void init() {
