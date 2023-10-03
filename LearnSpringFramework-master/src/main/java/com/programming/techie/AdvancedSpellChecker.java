@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-//@PropertySource(value = "classpath:/application.properties")
+@PropertySource(value = "classpath:/application.properties")
 //@Scope("prototype")
 //@Scope("singleton")
 public class AdvancedSpellChecker implements SpellChecker,InitializingBean,DisposableBean {
 
-   // @Value("${app.database.uri}")
-   // private String databaseUri;
+    @Value("${app.database.uri}")
+    private String databaseUri;
 
 
     public void checkSpelling(String emailMessage) {
@@ -26,7 +26,7 @@ public class AdvancedSpellChecker implements SpellChecker,InitializingBean,Dispo
             System.out.println("Checking Spelling using Advanced Spell Checker..");
             System.out.println("Spell Checking Completed!!");
 
-           // System.out.println("DB URI: " + databaseUri);
+            System.out.println("DB URI: " + databaseUri);
         } else {
             throw new RuntimeException("An exception occurred while checking Spelling");
         }
@@ -34,7 +34,7 @@ public class AdvancedSpellChecker implements SpellChecker,InitializingBean,Dispo
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("Destroyed Properties");
+        System.out.println("Destroyed Properties-------------------------------------------");
     }
 
     @Override
