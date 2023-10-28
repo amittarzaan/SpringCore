@@ -1,9 +1,13 @@
 package com.alibou.oauth2.landleasing.login.security;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
@@ -11,9 +15,14 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.alibou.oauth2.landleasing.dbtest.Student;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -44,13 +53,19 @@ public class SecurityConfig {
 					System.out.println("principal>>>"+principal.getAttribute("email"));
 					System.out.println("principal>>>"+principal.getAttribute("picture"));
 					System.out.println("principal>>>"+principal.getAttribute("email_verified"));
+					String sql = "SELECT * FROM Student where id in (1,2)";
+			         
+			        List<Student> students = jdbcTemplate.query(sql,
+			                BeanPropertyRowMapper.newInstance(Student.class));
+			         
+			        students.forEach(System.out :: println);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 								
 				//userService.processOAuthPostLogin(principal);
-				response.sendRedirect("/dynamic/api/profile");
+			    response.sendRedirect("/dynamic/api/profile");
 			}
 	    	
 	    		})
