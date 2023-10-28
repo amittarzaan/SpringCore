@@ -21,9 +21,6 @@ import com.alibou.oauth2.landleasing.dbtest.Student;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
-
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
@@ -53,13 +50,7 @@ public class SecurityConfig {
 					System.out.println("principal>>>"+principal.getAttribute("email"));
 					System.out.println("principal>>>"+principal.getAttribute("picture"));
 					System.out.println("principal>>>"+principal.getAttribute("email_verified"));
-					String sql = "SELECT * FROM Student where id in (1,2)";
-			         
-			        List<Student> students = jdbcTemplate.query(sql,
-			                BeanPropertyRowMapper.newInstance(Student.class));
-			         
-			        students.forEach(System.out :: println);
-					
+							         					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
