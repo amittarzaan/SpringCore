@@ -1,13 +1,11 @@
 package com.alibou.oauth2.landleasing.login.security;
 
 import java.io.IOException;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
@@ -15,14 +13,13 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.alibou.oauth2.landleasing.dbtest.Student;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	  
     http
         .csrf()
         .disable()
@@ -39,6 +36,8 @@ public class SecurityConfig {
 			public void onAuthenticationSuccess(jakarta.servlet.http.HttpServletRequest request,
 					jakarta.servlet.http.HttpServletResponse response, Authentication authentication)
 					throws IOException, jakarta.servlet.ServletException {
+				String encodedString=null;
+				String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 				System.out.println("AuthenticationSuccessHandler invoked");
 				System.out.println("Authentication name: " + authentication.getName());
 				//Principal p=(Principal) authentication.getPrincipal();
@@ -50,13 +49,22 @@ public class SecurityConfig {
 					System.out.println("principal>>>"+principal.getAttribute("email"));
 					System.out.println("principal>>>"+principal.getAttribute("picture"));
 					System.out.println("principal>>>"+principal.getAttribute("email_verified"));
+					encodedString = Base64.getEncoder().encodeToString(principal.
+							getAttribute("email")
+							.toString()
+							.concat(","+timeStamp)
+							.getBytes());
+					System.out.println("Encoding >>>"+encodedString);
+					response.sendRedirect("/dynamic/api/profile/"+encodedString);
 							         					
 				} catch (Exception e) {
 					e.printStackTrace();
+					response.sendRedirect("/dynamic/api/profile/");
 				}
 								
 				//userService.processOAuthPostLogin(principal);
-			    response.sendRedirect("/dynamic/api/profile");
+				
+			    
 			}
 	    	
 	    		})

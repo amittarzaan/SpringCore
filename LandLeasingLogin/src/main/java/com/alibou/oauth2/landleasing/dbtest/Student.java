@@ -9,6 +9,7 @@ public class Student {
 	private int id;
 	private String name;
 	private int age;
+	private String email;
 	public int getId() {
 		return id;
 	}
@@ -29,7 +30,13 @@ public class Student {
 	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Student [id=" + id + ", name=" + name + ", age=" + age +", email="+email+ "]";
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 
