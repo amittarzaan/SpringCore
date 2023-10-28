@@ -1,3 +1,5 @@
+server:
+      port : 8082
 spring:
   jpa:
         hibernate:
@@ -25,7 +27,6 @@ spring:
     content-type: text/html
     enabled: true
     encoding: UTF-8           
-server:
-      port : 8082
+
                     
   
