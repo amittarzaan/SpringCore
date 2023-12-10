@@ -27,6 +27,7 @@ public class AdvancedSpellChecker implements SpellChecker,InitializingBean,Dispo
             System.out.println("Spell Checking Completed!!");
             System.out.println("This is for tsting ");
             System.out.println("add code from test branch");
+            System.out.println("add code2 from test branch");
 
             System.out.println("DB URI: " + databaseUri);
         } else {
