@@ -30,6 +30,7 @@ public class AdvancedSpellChecker implements SpellChecker,InitializingBean,Dispo
             System.out.println("This is for dev ");
             System.out.println("This is for dev2 ");
             System.out.println("This is for dev3 ");
+            System.out.println("This is for dev4 ");
 
             System.out.println("DB URI: " + databaseUri);
         } else {
